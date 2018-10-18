@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/circleImageView"
+        android:layout_width="100dp"
+        android:layout_height="98dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/imagebg"
+        android:padding="30dp"
+        android:src="@drawable/history"
+        android:tag="history"
+        android:translationZ="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_row="0"
+        android:layout_column="2"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="36dp"
+        android:background="@drawable/imagebg"
+        android:padding="30dp"
+        android:src="@drawable/down"
+        android:tag="download"
+        android:translationZ="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="142dp"
+        android:background="@drawable/imagebg"
+        android:padding="30dp"
+        android:src="@drawable/cog"
+        android:tag="settings"
+        android:translationZ="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_row="0"
+        android:layout_column="2"
+        android:layout_marginTop="142dp"
+        android:layout_marginEnd="36dp"
+        android:background="@drawable/imagebg"
+        android:padding="30dp"
+        android:src="@drawable/bookmark"
+        android:tag="bookmark"
+        android:translationZ="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+
+
+
+</android.support.constraint.ConstraintLayout>
