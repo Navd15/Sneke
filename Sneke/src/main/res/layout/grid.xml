@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
+    android:id="@+id/grid"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,7 +8,7 @@
     android:layout_height="match_parent">
 
     <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/circleImageView"
+        android:id="@+id/ImageView0"
         android:layout_width="100dp"
         android:layout_height="98dp"
         android:layout_marginStart="36dp"
@@ -19,6 +20,7 @@
         android:translationZ="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageView
         android:id="@+id/imageView2"
@@ -48,7 +50,7 @@
         android:tag="settings"
         android:translationZ="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/ImageView0" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -62,6 +64,7 @@
         android:padding="30dp"
         android:src="@drawable/bookmark"
         android:tag="bookmark"
+        android:onClick="ImageClickListener"
         android:translationZ="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
