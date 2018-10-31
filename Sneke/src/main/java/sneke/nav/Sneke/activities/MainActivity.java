@@ -1,34 +1,27 @@
-package sneke.nav.Sneke;
+package sneke.nav.Sneke.activities;
 
-import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.WrapperListAdapter;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
 import sneke.nav.Sneke.R;
+import sneke.nav.Sneke.fragments.Replacer;
+import sneke.nav.Sneke.fragments.web;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String TAG = "";
+    private static final String TAG = "MainActivity";
     private ImageButton searchButton, menu;
     private EditText searchBar;
-    private Replacer main;
+    private Replacer grid;
+    private static LinearLayout searchViewGroup;
     private String baseUrl = "https://developer.android.com/guide/topics/search/search-dialog#jav";
-    private WebView webView;
     private View.OnClickListener listener;
     private ArrayList<View> viewList;
 
@@ -44,17 +37,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         viewList = new ArrayList<>();
         listener = this;
-        main =new Replacer();
+        grid = new Replacer();
+        searchViewGroup=findViewById(R.id.cluster);
         searchBar = findViewById(R.id.searchBar);
         searchButton = findViewById(R.id.searchButton);
-
+        Log.i(TAG, "onCreate: " + R.id.webView);
         menu = findViewById(R.id.menu);
         viewList.add(searchBar);
         viewList.add(searchButton);
         viewList.add(menu);
-//        FragmentManager fragmentManager=getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-//        fragmentTransaction.add(R.id.webView,main);
+
+        getSupportFragmentManager().beginTransaction().add(R.id.frame, grid).commit();
         set();
         /**
          * A native method that is implemented by the 'native-lib' native library,
@@ -65,26 +58,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /*Helper methods*/
 
-    /*Start fragment according to imageView clicked*/
-
-    public void ImageClickListener(View v) {
-        switch ((String) v.getTag()) {
-            case "bookmarks":
-                Log.i(TAG, "ImageClickListener: bookmarks");
-                break;
-            case "downloads":
-                break;
-            case "history":
-                break;
-            case "settings":
-
-                break;
-
-            default:
-                /* Dont know*/
-        }
-
-    }
 
     /*Sets click listener*/
     private void set() {
@@ -105,16 +78,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void startWebView() {
         String searchText = searchBar.getText().toString();
+//        Log.i(TAG, String.valueOf(main.getView().getId() == R.id.grid));
         if (searchText.length() > 0) {
-            if(findViewById(R.id.webView)==null){
-                Log.i(TAG, "startWebView: Yas");
-                getSupportFragmentManager().beginTransaction().replace(R.id.webView,main).commit();
-//                webView = findViewById(R.id.webView);
-            }
-//            webView.loadUrl(baseUrl + searchText);
-//            Log.i(TAG, "startWebView: " + webView.getUrl());
+
+            if (findViewById(R.id.webView) == null) {
+                web w =
+                        web.newInstance("https://www.google.co.in/search?q=" + searchText);
+                getSupportFragmentManager().beginTransaction().replace(R.id.frame, w).commit();
+//                Log.i(TAG, String.valueOf(w.getView()==findViewById(R.id.webView)));
+
+//                webView.loadUrl(searchText);
+            } else
+                web.search("https://www.google.co.in/search?q=" + searchText);
+
+
         }
 
+    }
+
+
+    public static View getClusterView(){
+        return searchViewGroup;
     }
 
 
